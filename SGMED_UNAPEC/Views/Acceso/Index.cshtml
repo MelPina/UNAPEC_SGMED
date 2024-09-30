@@ -1,0 +1,99 @@
+﻿@model Usuario
+@{
+    ViewBag.Title = "Iniciar sesión";
+    Layout = null;
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Iniciar Sesión</title>
+
+    <!--  CSS Files -->
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+</head>
+
+<main>
+    <div class="container">
+
+        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                        <div class="d-flex justify-content-center py-4">
+                            <a  class="logo d-flex align-items-center w-auto">
+                                @* <img src="assets/img/favicon.png" alt=""> *@
+                                <span class="d-none d-lg-block">SGMED UNAPEC</span>
+                            </a>
+                        </div><!-- End Logo -->
+
+                        <div class="card mb-3">
+
+                            <div class="card-body">
+
+                                <div class="pt-4 pb-2">
+                                    <h5 class="card-title text-center pb-0 fs-4">Bienvenido</h5>
+                                </div>
+
+                                <form asp-controller="Acceso" asp-action="Index" method="post" class="row g-3">
+
+                                    <div class="col-12">
+                                        <label for="Username" class="form-label">Usuario</label>
+                                        <input class="form-control" asp-for="Username" required />
+                                        <span asp-validation-for="Username"></span>
+
+                                    </div>
+
+                                    <div class="col-12">
+                                        <label for="Password" class="form-label">Contraseña</label>
+                                        <input type="password" class="form-control" asp-for="Password" required />
+                                        <span asp-validation-for="Password"></span>
+                                    </div>
+
+
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100" type="submit">Iniciar Sesión</button>
+                                    </div>
+
+                                    
+
+                                </form>
+                                @if (ViewBag.Error != null)
+                                {
+                                    <div class="alert alert-danger">
+                                        @ViewBag.Error
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</main><!-- End #main -->
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<!-- JS Files -->
+
+<script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+<!--  Main JS File -->
+<script src="~/assets/js/main.js"></script>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+

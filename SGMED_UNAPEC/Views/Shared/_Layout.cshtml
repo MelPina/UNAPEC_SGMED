@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SGMED UNAPEC</title>
+ 
+    <!--  CSS Files -->
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+  
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a class="logo d-flex align-items-center">
+                @* <img src="~/assets/img/favicon.png" alt=""> *@
+                <span class="d-none d-lg-block">SGMED UNAPEC</span>
+
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+
+        </div><!-- End Logo -->
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="~/assets/img/porfile-user.png" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2"></span>
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <h6>@User.Identity.Name</h6>
+
+                            }
+
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>                        
+
+                        <li>
+
+                        </li>
+                        <li>
+                            <a asp-controller="Acceso" asp-action="Salir" class="dropdown-item d-flex align-items-center">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span asp-controller="Acesso" asp-action="Salir">Cerrar Sesión</span>
+                            </a>
+                        </li>
+
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+
+            </ul>
+        </nav>
+    </header>
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+
+            </li><!-- End Dashboard Nav -->
+            @if (User.IsInRole("1"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#farmacos-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-capsule"></i><span>Gestión Tipos de Fármacos</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="farmacos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a asp-area="" asp-controller="Tipofarmacos" asp-action="Index"> Gestión de Tipos de Fármacos </a>
+                        </li>
+                        
+
+                    </ul>
+                </li>
+
+                <!-- End Gestión de Tipos de Fármacos Nav -->
+            }
+            @if (User.IsInRole("1"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#marcas-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-menu-button-wide"></i><span>Gestión de Marcas</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="marcas-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a asp-area="" asp-controller="Marcas" asp-action="Index"> Gestión de Marcas </a>
+                        </li>
+                        
+
+                    </ul>
+                </li>
+
+            <!-- End Gestión de Marcas Nav -->
+            }  
+            @if (User.IsInRole("1"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#ubicaciones-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-geo-alt"></i><span>Gestión de Ubicaciones</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="ubicaciones-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a asp-area="" asp-controller="Ubicaciones" asp-action="Index"> Gestión de Ubicaciones  </a>
+                        </li>
+                        
+
+                    </ul>
+                </li>
+
+            <!-- End Gestión de Ubicaciones Nav -->
+            }        @if (User.IsInRole("1") || User.IsInRole("4"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#medicamentos-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-prescription2"></i><span>Gestión de Medicamentos </span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="medicamentos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                        <a asp-area="" asp-controller="Medicamentos" asp-action="Index"> Gestión de Medicamentos   </a>
+                        </li>
+                        
+
+                    </ul>
+                </li>
+
+            <!-- End Gestión de Ubicaciones Nav -->
+            }           
+          
+         
+            <li class="nav-heading">Configuraciones</li>
+            @if (User.IsInRole("1"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#administracion-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-person"></i><span>Administración</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="administracion-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <a class="nav-link collapsed" asp-area="" asp-controller="Usuarios" asp-action="Index"> Control Usuarios </a>
+
+                        <a class="nav-link collapsed" asp-area="" asp-controller="Usuarios" asp-action="Create"> Nuevo Usuario </a>
+                    </ul>
+                </li>
+               
+            }
+                   
+
+        </ul>
+
+
+    </aside>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            <p><strong><span>&copy; @DateTime.Now.Year - SGMED UNAPEC</span></strong></p>
+        </div>
+
+    </footer><!-- End Footer -->
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <!-- JS Files -->
+
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <!--  Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
