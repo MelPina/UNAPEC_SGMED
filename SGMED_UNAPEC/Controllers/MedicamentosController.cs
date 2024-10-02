@@ -130,6 +130,19 @@ namespace SGMED_UNAPEC.Controllers
             ViewData["MarcaId"] = new SelectList(_context.Marcas, "MarcaId", "MarcaId");
             ViewData["TipoFarmacoId"] = new SelectList(_context.Tipofarmacos, "TipoFarmacoId", "TipoFarmacoId");
             ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "UbicacionId", "UbicacionId");
+
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
+
+            var marca = _context.Marcas.ToList();
+            ViewBag.Marca = marca;
+
+            var tpfarmaco = _context.Tipofarmacos.ToList();
+            ViewBag.Tpfarmaco = tpfarmaco;
+
+            var ubicacion = _context.Ubicacions.ToList();
+            ViewBag.Ubicacion = ubicacion;
+
             return View();
         }
 
@@ -150,6 +163,18 @@ namespace SGMED_UNAPEC.Controllers
             ViewData["MarcaId"] = new SelectList(_context.Marcas, "MarcaId", "MarcaId", medicamento.MarcaId);
             ViewData["TipoFarmacoId"] = new SelectList(_context.Tipofarmacos, "TipoFarmacoId", "TipoFarmacoId", medicamento.TipoFarmacoId);
             ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "UbicacionId", "UbicacionId", medicamento.UbicacionId);
+
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
+
+            var marca = _context.Marcas.ToList();
+            ViewBag.Marca = marca;
+
+            var tpfarmaco = _context.Tipofarmacos.ToList();
+            ViewBag.Tpfarmaco = tpfarmaco;
+
+            var ubicacion = _context.Ubicacions.ToList();
+            ViewBag.Ubicacion = ubicacion;
             return View(medicamento);
         }
 
@@ -170,6 +195,19 @@ namespace SGMED_UNAPEC.Controllers
             ViewData["MarcaId"] = new SelectList(_context.Marcas, "MarcaId", "MarcaId", medicamento.MarcaId);
             ViewData["TipoFarmacoId"] = new SelectList(_context.Tipofarmacos, "TipoFarmacoId", "TipoFarmacoId", medicamento.TipoFarmacoId);
             ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "UbicacionId", "UbicacionId", medicamento.UbicacionId);
+
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
+
+            var marca = _context.Marcas.ToList();
+            ViewBag.Marca = marca;
+
+            var tpfarmaco = _context.Tipofarmacos.ToList();
+            ViewBag.Tpfarmaco = tpfarmaco;
+
+            var ubicacion = _context.Ubicacions.ToList();
+            ViewBag.Ubicacion = ubicacion;
+
             return View(medicamento);
         }
 
@@ -209,6 +247,19 @@ namespace SGMED_UNAPEC.Controllers
             ViewData["MarcaId"] = new SelectList(_context.Marcas, "MarcaId", "MarcaId", medicamento.MarcaId);
             ViewData["TipoFarmacoId"] = new SelectList(_context.Tipofarmacos, "TipoFarmacoId", "TipoFarmacoId", medicamento.TipoFarmacoId);
             ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "UbicacionId", "UbicacionId", medicamento.UbicacionId);
+
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
+
+            var marca = _context.Marcas.ToList();
+            ViewBag.Marca = marca;
+
+            var tpfarmaco = _context.Tipofarmacos.ToList();
+            ViewBag.Tpfarmaco = tpfarmaco;
+
+            var ubicacion = _context.Ubicacions.ToList();
+            ViewBag.Ubicacion = ubicacion;
+
             return View(medicamento);
         }
 

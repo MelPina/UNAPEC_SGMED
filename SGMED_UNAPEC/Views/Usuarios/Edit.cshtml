@@ -1,54 +1,76 @@
 ﻿@model SGMED_UNAPEC.Models.Usuario
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Usuario";
 }
 
-<h1>Edit</h1>
+<main id="main" class="main">
+    <div class="card">
+        <div class="card-body">
+            <br />
+            <h5 class="card-title text-center">Información del usuario</h5>
+            <hr />
 
-<h4>Usuario</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
         <form asp-action="Edit">
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="UsuarioId" />
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
+            <div class="row g-2 justify-content-center ">
+             <div class="col-md-12">
+              <label for="Nombre" class="form-label">Nombre Completo</label>
                 <input asp-for="Nombre" class="form-control" />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Username" class="control-label"></label>
+                            <div class="col-md-12">
+                                <label for="Username" class="form-label">Nombre de Usuario</label>
                 <input asp-for="Username" class="form-control" />
                 <span asp-validation-for="Username" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
+                            <div class="col-md-12">
+                                <label for="Password" class="form-label">Contraseña Provisional</label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="RolId" class="control-label"></label>
-                <select asp-for="RolId" class="form-control" asp-items="ViewBag.RolId"></select>
-                <span asp-validation-for="RolId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EstadoId" class="control-label"></label>
-                <select asp-for="EstadoId" class="form-control" asp-items="ViewBag.EstadoId"></select>
-                <span asp-validation-for="EstadoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+            </br>
+                        <div class="row g-2 ">
+
+                            <div class="col-md-3">
+                                <label for="RolId" class="form-label">Rol</label>
+                                <select asp-for="RolId" id="rol" class="form-select">
+                                    <option selected>Seleccionar...</option>
+                                    @foreach (var roles in ViewBag.Rol)
+                                    {
+                                        <option value="@roles.RolId">@roles.Descripcion</option>
+                                    }
+
+                                </select>
+                                <span asp-validation-for="RolId" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="EstadoId" class="form-label">Estado</label>
+                                <select asp-for="EstadoId" id="estado" class="form-select">
+                                    <option selected>Seleccionar...</option>
+                                    @foreach (var estados in ViewBag.Estado)
+                                    {
+                                        <option value="@estados.EstadoId">@estados.Descripcion</option>
+                                    }
+
+                                </select>
+                                <span asp-validation-for="EstadoId" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <input type="submit" value="Actualizar" class="btn btn-success" />
+                            <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+                        </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</main>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

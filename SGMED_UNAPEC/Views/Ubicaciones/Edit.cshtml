@@ -1,54 +1,62 @@
 ﻿@model SGMED_UNAPEC.Models.Ubicacion
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar - Ubicación";
 }
-
-<h1>Edit</h1>
-
-<h4>Ubicacion</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<main id="main" class="main">
+    <div class="card">
+       <div class="card-body">
+            <br />
+            <h5 class="card-title text-center">Información de la ubicación</h5>
+            <hr /> 
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row g-2 justify-content-center ">
             <input type="hidden" asp-for="UbicacionId" />
-            <div class="form-group">
+                <div class="col-md-12">
                 <label asp-for="Descripcion" class="control-label"></label>
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
-            <div class="form-group">
+                <div class="col-md-12">
                 <label asp-for="Estante" class="control-label"></label>
                 <input asp-for="Estante" class="form-control" />
                 <span asp-validation-for="Estante" class="text-danger"></span>
             </div>
-            <div class="form-group">
+                <div class="col-md-12">
                 <label asp-for="Tramo" class="control-label"></label>
                 <input asp-for="Tramo" class="form-control" />
                 <span asp-validation-for="Tramo" class="text-danger"></span>
             </div>
-            <div class="form-group">
+                <div class="col-md-12">
                 <label asp-for="Celda" class="control-label"></label>
                 <input asp-for="Celda" class="form-control" />
                 <span asp-validation-for="Celda" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EstadoId" class="control-label"></label>
-                <select asp-for="EstadoId" class="form-control" asp-items="ViewBag.EstadoId"></select>
-                <span asp-validation-for="EstadoId" class="text-danger"></span>
+                <div class="col-md-12">
+                    <label for="EstadoId" class="form-label">Estado</label>
+                    <select asp-for="EstadoId" id="estado" class="form-select">
+                        <option selected>Seleccionar...</option>
+                        @foreach (var estados in ViewBag.Estado)
+                        {
+                            <option value="@estados.EstadoId">@estados.Descripcion</option>
+                        }
+
+                    </select>
+                    <span asp-validation-for="EstadoId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+                <div class="text-center">
+                    <input type="submit" value="Actualizar" class="btn btn-success" />
+                    <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+                </div>
+                </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+  </div>
 </div>
 
+</main>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

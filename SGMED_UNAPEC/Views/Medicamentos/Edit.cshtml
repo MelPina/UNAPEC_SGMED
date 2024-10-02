@@ -1,58 +1,94 @@
 ﻿@model SGMED_UNAPEC.Models.Medicamento
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar - Medicamento";
 }
 
-<h1>Edit</h1>
 
-<h4>Medicamento</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<main id="main" class="main">
+    <div class="card">
+        <div class="card-body">
+            <br />
+            <h5 class="card-title text-center">Información del medicamento</h5>
+            <hr />
+
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="MedicamentoId" />
-            <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
-                <input asp-for="Descripcion" class="form-control" />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            <div class="row g-2 justify-content-center ">
+                <div class="form-group">
+                    <label asp-for="Descripcion" class="control-label"></label>
+                    <input asp-for="Descripcion" class="form-control" />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="TipoFarmacoId" class="form-label">Tipo de Fármaco</label>
+                    <select asp-for="TipoFarmacoId" id="estado" class="form-select">
+                        <option selected>Seleccionar...</option>
+                        @foreach (var tpfarmacos in ViewBag.Tpfarmaco)
+                        {
+                            <option value="@tpfarmacos.TipoFarmacoId">@tpfarmacos.Descripcion</option>
+                        }
+
+                    </select>
+                    <span asp-validation-for="TipoFarmacoId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="MarcaId" class="form-label">Marca</label>
+                    <select asp-for="MarcaId" id="estado" class="form-select">
+                        <option selected>Seleccionar...</option>
+                        @foreach (var marcas in ViewBag.Marca)
+                        {
+                            <option value="@marcas.MarcaId">@marcas.Descripcion</option>
+                        }
+
+                    </select>
+                    <span asp-validation-for="MarcaId" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="UbicacionId" class="form-label">Ubicación</label>
+                    <select asp-for="UbicacionId" id="estado" class="form-select">
+                        <option selected>Seleccionar...</option>
+                        @foreach (var ubicaciones in ViewBag.Ubicacion)
+                        {
+                            <option value="@ubicaciones.UbicacionId">@ubicaciones.Descripcion</option>
+                        }
+
+                    </select>
+                    <span asp-validation-for="UbicacionId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Dosis" class="control-label"></label>
+                    <input asp-for="Dosis" class="form-control" />
+                    <span asp-validation-for="Dosis" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="EstadoId" class="form-label">Estado</label>
+                    <select asp-for="EstadoId" id="estado" class="form-select">
+                        <option selected>Seleccionar...</option>
+                        @foreach (var estados in ViewBag.Estado)
+                        {
+                            <option value="@estados.EstadoId">@estados.Descripcion</option>
+                        }
+
+                    </select>
+                    <span asp-validation-for="EstadoId" class="text-danger"></span>
+                </div>
+               
+            <br />
+            <div class="text-center">
+                <input type="submit" value="Actualizar" class="btn btn-success" />
+                <a class="btn btn-danger" asp-action="Index">Cancelar</a>
             </div>
-            <div class="form-group">
-                <label asp-for="TipoFarmacoId" class="control-label"></label>
-                <select asp-for="TipoFarmacoId" class="form-control" asp-items="ViewBag.TipoFarmacoId"></select>
-                <span asp-validation-for="TipoFarmacoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MarcaId" class="control-label"></label>
-                <select asp-for="MarcaId" class="form-control" asp-items="ViewBag.MarcaId"></select>
-                <span asp-validation-for="MarcaId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UbicacionId" class="control-label"></label>
-                <select asp-for="UbicacionId" class="form-control" asp-items="ViewBag.UbicacionId"></select>
-                <span asp-validation-for="UbicacionId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Dosis" class="control-label"></label>
-                <input asp-for="Dosis" class="form-control" />
-                <span asp-validation-for="Dosis" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EstadoId" class="control-label"></label>
-                <select asp-for="EstadoId" class="form-control" asp-items="ViewBag.EstadoId"></select>
-                <span asp-validation-for="EstadoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+ </div>
 </div>
+
+</main>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

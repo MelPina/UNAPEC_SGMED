@@ -110,6 +110,8 @@ namespace SGMED_UNAPEC.Controllers
         public IActionResult Create()
         {
             ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId");
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
             return View();
         }
 
@@ -144,6 +146,8 @@ namespace SGMED_UNAPEC.Controllers
                 return NotFound();
             }
             ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", tipofarmaco.EstadoId);
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
             return View(tipofarmaco);
         }
 
@@ -180,6 +184,8 @@ namespace SGMED_UNAPEC.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", tipofarmaco.EstadoId);
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
             return View(tipofarmaco);
         }
 
