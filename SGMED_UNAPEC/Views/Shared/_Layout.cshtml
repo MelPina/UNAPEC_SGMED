@@ -124,7 +124,41 @@
                 </li>
 
             <!-- End Gestión de Ubicaciones Nav -->
-            }        @if (User.IsInRole("1") || User.IsInRole("4"))
+            }               @if (User.IsInRole("1"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#pacientes-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-menu-button-wide"></i><span>Gestión de Pacientes</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="pacientes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a asp-area="" asp-controller="Pacientes" asp-action="Index"> Gestión de Pacientes </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <!-- End Gestión de Pacientes Nav -->
+            }   
+            @if (User.IsInRole("1"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#medicos-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-menu-button-wide"></i><span>Gestión de Medicos</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="medicos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a asp-area="" asp-controller="Medicos" asp-action="Index"> Gestión de Medicos </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <!-- End Gestión de Medicos Nav -->
+            }
+            @if (User.IsInRole("1") || User.IsInRole("4"))
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#medicamentos-nav" data-bs-toggle="collapse" href="#">

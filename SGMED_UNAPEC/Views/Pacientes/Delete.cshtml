@@ -1,0 +1,58 @@
+﻿@model SGMED_UNAPEC.Models.Paciente
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<main id="main" class="main">
+    <div class="card">
+        <div class="card-body">
+            <br />
+            <h5 class="card-title text-center">Eliminar Paciente</h5>
+            <hr />
+
+            <div>
+                <h4>Paciente</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Cedula)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Cedula)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.NoCarnet)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.NoCarnet)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.TipoPaciente)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.TipoPaciente)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Estado)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Estado.Descripcion)
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="PacienteId" />
+                    <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                    <a asp-action="Index">Volver al listado</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

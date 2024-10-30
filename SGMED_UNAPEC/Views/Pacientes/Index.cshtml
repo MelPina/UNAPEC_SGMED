@@ -1,0 +1,127 @@
+﻿@{
+    ViewData["Title"] = "Listado de Pacientes";
+}
+
+<main id="main" class="main">
+    <div class="card">
+        <div class="card-body">
+            <br />
+            <h5 class="card-title">Listado de Pacientes</h5>
+            <br />
+
+            <div class="row">
+                <div class="slider"></div>
+
+                <table id="tbPacientes" class="table table-striped w-100">
+                    <thead>
+                        <tr>
+                            <th>PacienteId</th>
+                            <th>Nombre</th>
+                            <th>Cédula</th>
+                            <th>No Carnet</th>
+                            <th>Tipo de Paciente</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <link href="~/assets/css/css_datatables.min.css" rel="stylesheet" />
+    <link href="~/assets/css/buttons.datatables.min.css" rel="stylesheet" />
+    <link href="~/assets/css/fixedheader.datatables.min.css" rel="stylesheet" />
+
+    <style>
+        thead input {
+            width: 100%;
+            background-color: #FFFFCC !important;
+        }
+
+        .hidden-header {
+            display: none;
+            background-color: white;
+        }
+
+        .btn-nuevo {
+            background-color: #1bb0cf !important;
+            color: white !important;
+        }
+
+        table.dataTable tbody td.no-padding {
+            padding: 0;
+        }
+    </style>
+
+    <script src="~/assets/datatables.responsive.min.js"></script>
+    <script src="~/assets/jquery.datatables.min.js"></script>
+    <script src="~/assets/js/datatables.buttons.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var table = $("#tbPacientes").DataTable({
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    "url": "@Url.Action("ObtenerDatosPacientes", "Pacientes")",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "pacienteId" },
+                    { "data": "nombre" },
+                    { "data": "cedula" },
+                    { "data": "noCarnet" },
+                    { "data": "tipoPaciente" },
+                    { "data": "estado" },
+                ],
+                columnDefs: [
+                    {
+                        targets: [0],
+                        visible: false
+                    }
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        text: 'Crear',
+                        action: function () {
+                            window.location.href = "@Url.Action("Create", "Pacientes")";
+                        },
+                        className: 'btn-nuevo',
+                    },
+                    "pageLength"
+                ],
+                "language": {
+                    "processing": "Procesando...",
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "zeroRecords": "No se encontraron resultados",
+                    "emptyTable": "Ningún dato disponible en esta tabla",
+                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "search": "Buscar:",
+                    "infoThousands": ",",
+                    "loadingRecords": "Cargando...",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    },
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ registros"
+                }
+            });
+
+            $('#tbPacientes tbody').on('dblclick', 'tr', function () {
+                var data = table.row(this).data();
+                if (data) {
+                    window.location.href = '@Url.Action("Edit", "Pacientes")/' + data.pacienteId;
+                }
+            });
+        });
+    </script>
+}

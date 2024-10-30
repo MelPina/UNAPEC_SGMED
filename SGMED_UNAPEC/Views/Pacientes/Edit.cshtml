@@ -1,0 +1,64 @@
+﻿@model SGMED_UNAPEC.Models.Paciente
+
+@{
+    ViewData["Title"] = "Editar - Paciente";
+}
+
+<main id="main" class="main">
+    <div class="card">
+        <div class="card-body">
+            <br />
+            <h5 class="card-title text-center">Información del paciente</h5>
+            <hr />
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="PacienteId" />
+                <div class="row g-2 justify-content-center ">
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="control-label"></label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cedula" class="control-label"></label>
+                        <input asp-for="Cedula" class="form-control" />
+                        <span asp-validation-for="Cedula" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NoCarnet" class="control-label"></label>
+                        <input asp-for="NoCarnet" class="form-control" />
+                        <span asp-validation-for="NoCarnet" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TipoPaciente" class="control-label"></label>
+                        <input asp-for="TipoPaciente" class="form-control" />
+                        <span asp-validation-for="TipoPaciente" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="EstadoId" class="form-label">Estado</label>
+                        <select asp-for="EstadoId" id="estado" class="form-select">
+                            <option selected>Seleccionar...</option>
+                            @foreach (var estados in ViewBag.Estado)
+                            {
+                                <option value="@estados.EstadoId">@estados.Descripcion</option>
+                            }
+                        </select>
+                        <span asp-validation-for="EstadoId" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="text-center">
+                        <input type="submit" value="Actualizar" class="btn btn-success" />
+                        <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
