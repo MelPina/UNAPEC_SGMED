@@ -100,8 +100,88 @@
     <script src="~/assets/js/datatables.buttons.min.js"></script>
 
 
+    @*excel*@
+    <script src="~/assets/js/ajax_libs_jszip_3.1.3_jszip.min.js"></script>
+    <script src="~/assets/js/net_buttons_2.2.2_js_buttons.html5.min.js"></script>
+
+    @*pdf*@
+    <script src="~/assets/js/pdfmake_0.1.53_pdfmake.min.js"></script>
+    <script src="~/assets/js/pdfmake_0.1.53_vfs_fonts.js"></script>
+    <style>
 
 
+        thead input {
+            width: 100%;
+            background-color: #FFFFCC !important
+        }
+
+
+
+        .visible-cell {
+            display: table-cell;
+            background-color: white; /* Fondo blanco para las celdas visibles */
+        }
+
+
+
+        .hidden-cell {
+            display: none;
+            background-color: white; /* Fondo blanco incluso para las celdas ocultas */
+        }
+
+
+
+        .visible-header {
+            display: table-header-group;
+        }
+
+
+
+        .hidden-header {
+            display: none;
+            background-color: white; /* Fondo blanco incluso para los títulos de columna ocultos */
+        }
+
+        .btn-exportar-excel {
+            background-color: #26ad6e !important;
+            color: white !important;
+        }
+
+        .btn-exportar-pdf {
+            background-color: #E7622D !important;
+            color: white !important;
+        }
+
+        .btn-exportar-todo {
+            background-color: #cf1d2e !important;
+            color: white !important;
+        }
+
+        .btn-nuevo {
+            background-color: #1bb0cf !important;
+            color: white !important;
+        }
+
+        .btn-registros-en-blanco {
+            background-color: #85929E !important;
+            color: white !important;
+        }
+
+        td.details-control {
+            background: url('/assets/img/details_open.png') no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.shown td.details-control {
+            background: url('/assets/img/details_close.png') no-repeat center center;
+        }
+
+
+        table.dataTable tbody td.no-padding {
+            padding: 0;
+        }
+
+    </style>
     <script>
         $(document).ready(function () {
 
@@ -132,7 +212,33 @@
                 ],
                 dom: 'Bfrtip',
                 buttons: [
+                    //'excel',
+                    {
+                        extend: 'excelHtml5',
+                        text: 'Exportar Excel',
+                        filename: 'Reporte Medicamentos ' + (new Date().toISOString().split("T")[0]),
+                        title: '',
+                        exportOptions: {
+                            columns: [1, 2, 3, 4]
 
+
+
+                        },
+                        className: 'btn-exportar-excel',
+                    },
+                    //'pdf',
+                    {
+                        extend: 'pdfHtml5',
+                        text: 'Exportar PDF',
+                        filename: 'Reporte Medicamentos ' + (new Date().toISOString().split("T")[0]),
+                        title: '',
+                        orientation: 'landscape',
+
+                        exportOptions: {
+                            columns: [1, 2, 3, 4]
+                        },
+                        className: 'btn-exportar-pdf',
+                    },
                     //'Crear'
                     {
 
