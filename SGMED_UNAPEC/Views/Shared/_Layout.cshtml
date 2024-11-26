@@ -74,15 +74,37 @@
                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
 
             </li><!-- End Dashboard Nav -->
+            @if (User.IsInRole("1") || User.IsInRole("4"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#visitas-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-calendar2-week"></i><span>Gestión de Visitas </span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="visitas-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a asp-area="" asp-controller="Registrovisitas" asp-action="Index"> Lista de Visitas  </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Registrovisitas" asp-action="Create"> Registrar Visita </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <!-- End Gestión de Ubicaciones Nav -->
+            }
             @if (User.IsInRole("1"))
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#farmacos-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-capsule"></i><span>Gestión Tipos de Fármacos</span><i class="bi bi-chevron-down ms-auto"></i>
+                        <i class="bi bi-capsule"></i><span>Gestión de Fármacos</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
                     <ul id="farmacos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
-                            <a asp-area="" asp-controller="Tipofarmacos" asp-action="Index"> Gestión de Tipos de Fármacos </a>
+                            <a asp-area="" asp-controller="Tipofarmacos" asp-action="Index">Listado de Fármacos </a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Tipofarmacos" asp-action="Index"> Registrar Tipo de Fármaco </a>
                         </li>
                         
 
@@ -99,7 +121,7 @@
                     </a>
                     <ul id="marcas-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
-                            <a asp-area="" asp-controller="Marcas" asp-action="Index"> Gestión de Marcas </a>
+                            <a asp-area="" asp-controller="Marcas" asp-action="Index"> Listado de Marcas </a>
                         </li>
                         
 
@@ -116,7 +138,7 @@
                     </a>
                     <ul id="ubicaciones-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
-                            <a asp-area="" asp-controller="Ubicaciones" asp-action="Index"> Gestión de Ubicaciones  </a>
+                            <a asp-area="" asp-controller="Ubicaciones" asp-action="Index"> Todas las Ubicaciones  </a>
                         </li>
                         
 
@@ -128,14 +150,16 @@
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#pacientes-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-menu-button-wide"></i><span>Gestión de Pacientes</span><i class="bi bi-chevron-down ms-auto"></i>
+                        <i class="bi bi-people-fill"></i><span>Gestión de Pacientes</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
                     <ul id="pacientes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
-                            <a asp-area="" asp-controller="Pacientes" asp-action="Index"> Gestión de Pacientes </a>
+                            <a asp-area="" asp-controller="Pacientes" asp-action="Index"> Listado de Pacientes </a>
                         </li>
 
-
+                        <li>
+                            <a asp-area="" asp-controller="Pacientes" asp-action="Create"> Nuevo Pacientes </a>
+                        </li>
                     </ul>
                 </li>
 
@@ -145,13 +169,15 @@
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#medicos-nav" data-bs-toggle="collapse" href="#">
-                        <i class="bi bi-menu-button-wide"></i><span>Gestión de Medicos</span><i class="bi bi-chevron-down ms-auto"></i>
+                        <i class="bi bi-clipboard2-pulse"></i><span>Gestión de Médicos</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
                     <ul id="medicos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
-                            <a asp-area="" asp-controller="Medicos" asp-action="Index"> Gestión de Medicos </a>
+                            <a asp-area="" asp-controller="Medicos" asp-action="Index"> Listado de Médicos </a>
                         </li>
-
+                        <li>
+                            <a asp-area="" asp-controller="Medicos" asp-action="Create"> Registrar Médico </a>
+                        </li>
 
                     </ul>
                 </li>
@@ -166,7 +192,7 @@
                     </a>
                     <ul id="medicamentos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
-                        <a asp-area="" asp-controller="Medicamentos" asp-action="Index"> Gestión de Medicamentos   </a>
+                        <a asp-area="" asp-controller="Medicamentos" asp-action="Index"> Listado de Medicamentos   </a>
                         </li>
                         
 
