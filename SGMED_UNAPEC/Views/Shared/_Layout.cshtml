@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SGMED UNAPEC</title>
- 
+
     <!--  CSS Files -->
     <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
 <body>
-  
+
     <header id="header" class="header fixed-top d-flex align-items-center">
         <div class="d-flex align-items-center justify-content-between">
             <a class="logo d-flex align-items-center">
@@ -47,7 +47,7 @@
 
                         <li>
                             <hr class="dropdown-divider">
-                        </li>                        
+                        </li>
 
                         <li>
 
@@ -84,7 +84,7 @@
                         <li>
                             <a asp-area="" asp-controller="Tipofarmacos" asp-action="Index"> Gestión de Tipos de Fármacos </a>
                         </li>
-                        
+
 
                     </ul>
                 </li>
@@ -101,13 +101,13 @@
                         <li>
                             <a asp-area="" asp-controller="Marcas" asp-action="Index"> Gestión de Marcas </a>
                         </li>
-                        
+
 
                     </ul>
                 </li>
 
-            <!-- End Gestión de Marcas Nav -->
-            }  
+                <!-- End Gestión de Marcas Nav -->
+            }
             @if (User.IsInRole("1"))
             {
                 <li class="nav-item">
@@ -118,12 +118,12 @@
                         <li>
                             <a asp-area="" asp-controller="Ubicaciones" asp-action="Index"> Gestión de Ubicaciones  </a>
                         </li>
-                        
+
 
                     </ul>
                 </li>
 
-            <!-- End Gestión de Ubicaciones Nav -->
+                <!-- End Gestión de Ubicaciones Nav -->
             }               @if (User.IsInRole("1"))
             {
                 <li class="nav-item">
@@ -140,7 +140,7 @@
                 </li>
 
                 <!-- End Gestión de Pacientes Nav -->
-            }   
+            }
             @if (User.IsInRole("1"))
             {
                 <li class="nav-item">
@@ -166,17 +166,35 @@
                     </a>
                     <ul id="medicamentos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
-                        <a asp-area="" asp-controller="Medicamentos" asp-action="Index"> Gestión de Medicamentos   </a>
+                            <a asp-area="" asp-controller="Medicamentos" asp-action="Index"> Gestión de Medicamentos   </a>
                         </li>
-                        
+
 
                     </ul>
                 </li>
 
-            <!-- End Gestión de Ubicaciones Nav -->
-            }           
-          
-         
+                <!-- End Gestión de Ubicaciones Nav -->
+            }
+
+            @if (User.IsInRole("1") || User.IsInRole("4"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#registrovisitas-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-person-circle"></i><span>Visitas </span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="registrovisitas-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a asp-area="" asp-controller="RegistroVisita" asp-action="Consultas">Consultas</a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
+                <!-- End Gestión de Ubicaciones Nav -->
+            }
+
+
             <li class="nav-heading">Configuraciones</li>
             @if (User.IsInRole("1"))
             {
@@ -190,9 +208,9 @@
                         <a class="nav-link collapsed" asp-area="" asp-controller="Usuarios" asp-action="Create"> Nuevo Usuario </a>
                     </ul>
                 </li>
-               
+
             }
-                   
+
 
         </ul>
 
