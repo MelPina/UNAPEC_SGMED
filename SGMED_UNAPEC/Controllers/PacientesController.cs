@@ -145,7 +145,9 @@ namespace SGMED_UNAPEC.Controllers
             {
                 return NotFound();
             }
-            ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "Descripcion", paciente.EstadoId);
+            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "Descripcion", paciente.EstadoId);
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
             return View(paciente);
         }
 
@@ -179,7 +181,9 @@ namespace SGMED_UNAPEC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "Descripcion", paciente.EstadoId);
+            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "Descripcion", paciente.EstadoId);
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
             return View(paciente);
         }
 

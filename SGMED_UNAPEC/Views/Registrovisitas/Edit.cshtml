@@ -1,68 +1,77 @@
 ﻿@model SGMED_UNAPEC.Models.Registrovisitum
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar - Registro de Visita";
 }
 
-<h1>Edit</h1>
-
-<h4>Registrovisitum</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<main id="main" class="main">
+    <div class="card">
+        <div class="card-body">
+            <br />
+            <h5 class="card-title text-center">Información de la visita</h5>
+            <hr />
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="VisitaId" />
             <div class="form-group">
-                <label asp-for="MedicoId" class="control-label"></label>
+                <label for="Cedula" class="form-label">Cédula</label>
                 <select asp-for="MedicoId" class="form-control" asp-items="ViewBag.MedicoId"></select>
                 <span asp-validation-for="MedicoId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PacienteId" class="control-label"></label>
-                <select asp-for="PacienteId" class="form-control" asp-items="ViewBag.PacienteId"></select>
+                    <label for="PacienteId" class="form-label">Paciente</label>
+                    <select asp-for="PacienteId" class="form-control" asp-items="ViewBag.PacienteId"></select>
                 <span asp-validation-for="PacienteId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaVisita" class="control-label"></label>
-                <input asp-for="FechaVisita" class="form-control" />
+                    <label for="FechaVisita" class="form-label">Fecha de la Visita</label>
+                    <input asp-for="FechaVisita" class="form-control" />
                 <span asp-validation-for="FechaVisita" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HoraVisita" class="control-label"></label>
-                <input asp-for="HoraVisita" class="form-control" />
+                    <label for="HoraVisita" class="form-label">Hora de la Visita</label>
+                    <input asp-for="HoraVisita" class="form-control" />
                 <span asp-validation-for="HoraVisita" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Sintomas" class="control-label"></label>
+                    <label for="Sintomas" class="form-label">Síntomas</label>
                 <input asp-for="Sintomas" class="form-control" />
                 <span asp-validation-for="Sintomas" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MedicamentoId" class="control-label"></label>
-                <select asp-for="MedicamentoId" class="form-control" asp-items="ViewBag.MedicamentoId"></select>
+                    <label for="MedicamentoId" class="form-label">Medicamento</label>
+                    <select asp-for="MedicamentoId" class="form-control" asp-items="ViewBag.MedicamentoId"></select>
                 <span asp-validation-for="MedicamentoId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Recomendaciones" class="control-label"></label>
+                <label asp-for="Recomendaciones" class="form-label"></label>
                 <input asp-for="Recomendaciones" class="form-control" />
                 <span asp-validation-for="Recomendaciones" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EstadoId" class="control-label"></label>
-                <select asp-for="EstadoId" class="form-control" asp-items="ViewBag.EstadoId"></select>
-                <span asp-validation-for="EstadoId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+                <div class="form-group">
+                    <label for="EstadoId" class="form-label">Estado</label>
+                    <select asp-for="EstadoId" id="estado" class="form-select">
+                        <option selected>Seleccionar...</option>
+                        @foreach (var estados in ViewBag.Estado)
+                        {
+                            <option value="@estados.EstadoId">@estados.Descripcion</option>
+                        }
+                    </select>
+                    <span asp-validation-for="EstadoId" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="text-center">
+                    <input type="submit" value="Actualizar" class="btn btn-success" />
+                    <a class="btn btn-danger" asp-action="Index">Cancelar</a>
+                </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    </div>
+    </div>
+</main>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
