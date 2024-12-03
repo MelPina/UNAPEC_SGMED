@@ -24,6 +24,85 @@ namespace SGMED_UNAPEC.Controllers
             var sgmed_unapecContext = _context.Registrovisita.Include(r => r.Estado).Include(r => r.Medicamento).Include(r => r.Medico).Include(r => r.Paciente);
             return View(await sgmed_unapecContext.ToListAsync());
         }
+        [HttpPost]
+        public JsonResult ObtenerDatosVisitas()
+        {
+            try
+            {
+                // Representa el número de veces que se ha realizado una petición
+                int NroPeticion = Convert.ToInt32(Request.Form["draw"].FirstOrDefault() ?? "0");
+
+                // Cuantos registros va a devolver
+                int CantidadRegistros = Convert.ToInt32(Request.Form["length"].FirstOrDefault() ?? "0");
+
+                // Cuantos registros va a omitir
+                int OmitirRegistros = Convert.ToInt32(Request.Form["start"].FirstOrDefault() ?? "0");
+
+                //// El texto de búsqueda
+                string ValorBuscado = Request.Form["search[value]"].FirstOrDefault() ?? "";
+
+            
+                IQueryable<Registrovisitum> queryVisitas = _context.Registrovisita
+                .Include(v => v.Estado)
+                .Include(v => v.Medico)
+                .Include(v => v.Paciente)
+                .Include(v => v.Medicamento);
+
+                if (!string.IsNullOrEmpty(ValorBuscado))
+                {
+                    queryVisitas = queryVisitas.Where(v =>
+                        (v.Sintomas != null && v.Sintomas.Contains(ValorBuscado)) || 
+                        (v.Medico != null && EF.Functions.Like(v.Medico.Nombre, $"%{ValorBuscado}%")) ||
+                        (v.Paciente != null && EF.Functions.Like(v.Paciente.Nombre, $"%{ValorBuscado}%")));
+                }
+
+              
+
+
+                // Total de registros antes de filtrar
+                int TotalRegistros = _context.Registrovisita.Count();
+
+                // Total de registros filtrados
+                int TotalRegistrosFiltrados = queryVisitas.Count();
+
+                // Obtener registros paginados
+                var listaVisitas = queryVisitas
+                    .Skip(OmitirRegistros)
+                    .Take(CantidadRegistros)
+                    .Select(v => new
+                    {
+                        v.VisitaId,
+                        Medico = v.Medico.Nombre,
+                        Paciente = v.Paciente.Nombre,
+                        FechaVisita = v.FechaVisita.ToString("yyyy-MM-dd"),
+                        HoraVisita = v.HoraVisita.ToString("HH:mm"),
+                        v.Sintomas,
+                        Medicamento = v.Medicamento.Descripcion,
+                        v.Recomendaciones,
+                        Estado = v.Estado.Descripcion
+                    })
+                    .ToList();
+
+                // Devolver respuesta JSON esperada por DataTables
+                return Json(new
+                {
+                    draw = NroPeticion,
+                    recordsTotal = TotalRegistros,
+                    recordsFiltered = TotalRegistrosFiltrados,
+                    data = listaVisitas // Esta propiedad debe llamarse "data"
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    error = "Ocurrió un error al obtener los datos: " + ex.Message
+                });
+            }
+        }
+
+
+
 
         // GET: Registrovisitas/Details/5
         public async Task<IActionResult> Details(int? id)

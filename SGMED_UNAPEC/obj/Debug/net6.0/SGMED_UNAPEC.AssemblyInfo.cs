@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SGMED_UNAPEC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+811c45689feb14b47a649c7b77a997e03f3efaf3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+603ce315d6f1d7de81d714de0858456775b557b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("SGMED_UNAPEC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SGMED_UNAPEC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
