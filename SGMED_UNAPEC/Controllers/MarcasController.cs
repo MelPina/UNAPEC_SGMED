@@ -125,16 +125,16 @@ namespace SGMED_UNAPEC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MarcaId,Descripcion,EstadoId")] Marca marca)
         {
-            if (ModelState.IsValid)
+            
             {
                 _context.Add(marca);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", marca.EstadoId);
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
-            return View(marca);
+            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", marca.EstadoId);
+            //var estado = _context.Estados.ToList();
+            //ViewBag.Estado = estado;
+            //return View(marca);
         }
 
         // GET: Marcas/Edit/5
@@ -168,7 +168,7 @@ namespace SGMED_UNAPEC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+        
             {
                 try
                 {
@@ -188,10 +188,10 @@ namespace SGMED_UNAPEC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
-            ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", marca.EstadoId);
-            return View(marca);
+            //var estado = _context.Estados.ToList();
+            //ViewBag.Estado = estado;
+            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", marca.EstadoId);
+            //return View(marca);
         }
 
         // GET: Marcas/Delete/5

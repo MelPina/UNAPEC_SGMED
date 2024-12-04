@@ -161,7 +161,7 @@ namespace SGMED_UNAPEC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
             {
                 try
                 {
@@ -181,10 +181,10 @@ namespace SGMED_UNAPEC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "Descripcion", paciente.EstadoId);
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
-            return View(paciente);
+            ////ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "Descripcion", paciente.EstadoId);
+            //var estado = _context.Estados.ToList();
+            //ViewBag.Estado = estado;
+            //return View(paciente);
         }
 
         // GET: Pacientes/Delete/5

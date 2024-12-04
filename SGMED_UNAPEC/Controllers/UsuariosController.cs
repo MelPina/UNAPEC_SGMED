@@ -151,7 +151,7 @@ namespace SGMED_UNAPEC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UsuarioId,Nombre,Username,Password,RolId,EstadoId")] Usuario usuario)
         {
-            if (ModelState.IsValid)
+            
             {
                 try
                 {
@@ -213,7 +213,7 @@ namespace SGMED_UNAPEC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            
             {
                 try
                 {
@@ -233,21 +233,21 @@ namespace SGMED_UNAPEC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var rol = _context.Rols.ToList();
-            ViewBag.Rol = rol;
+            //var rol = _context.Rols.ToList();
+            //ViewBag.Rol = rol;
 
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
+            //var estado = _context.Estados.ToList();
+            //ViewBag.Estado = estado;
 
-            // Loguear los errores del ModelState si no es válido
-            foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-            {
-                Console.WriteLine(error.ErrorMessage);
-            }
+            //// Loguear los errores del ModelState si no es válido
+            //foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+            //{
+            //    Console.WriteLine(error.ErrorMessage);
+            //}
 
-            ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", usuario.EstadoId);
-            ViewData["RolId"] = new SelectList(_context.Rols, "RolId", "RolId", usuario.RolId);
-            return View(usuario);
+            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", usuario.EstadoId);
+            //ViewData["RolId"] = new SelectList(_context.Rols, "RolId", "RolId", usuario.RolId);
+            //return View(usuario);
         }
 
 

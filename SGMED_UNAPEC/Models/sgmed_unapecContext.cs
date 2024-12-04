@@ -108,11 +108,11 @@ namespace SGMED_UNAPEC.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Medicamento_Marca");
 
-                entity.HasOne(d => d.TipoFarmaco)
-                    .WithMany(p => p.Medicamentos)
-                    .HasForeignKey(d => d.TipoFarmacoId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Medicamento_TipoFarmaco");
+                //entity.HasOne(d => d.TipoFarmaco)
+                //    //.WithMany(p => p.Medicamentos)
+                //    .HasForeignKey(d => d.TipoFarmacoId)
+                //    .OnDelete(DeleteBehavior.ClientSetNull)
+                //    .HasConstraintName("FK_Medicamento_TipoFarmaco");
 
                 entity.HasOne(d => d.Ubicacion)
                     .WithMany(p => p.Medicamentos)

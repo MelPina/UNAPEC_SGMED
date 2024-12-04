@@ -16,14 +16,30 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row g-2 justify-content-center ">
-            <div class="form-group">
-                            <label for="MedicoId" class="form-label">Médico</label>
-                <select asp-for="MedicoId" class ="form-control" asp-items="ViewBag.MedicoId"></select>
-            </div>
-            <div class="form-group">
-                            <label for="PacienteId" class="form-label">Nombre del Paciente</label>
-                <select asp-for="PacienteId" class ="form-control" asp-items="ViewBag.PacienteId"></select>
-            </div>
+           
+                    <div class="form-group">
+                        <label for="MedicoId" class="form-label">Médico</label>
+                        <select asp-for="MedicoId" id="medicamento" class="form-control">
+                            <option selected>Seleccionar...</option>
+                            @foreach (var medico in ViewBag.Medico)
+                            {
+                                <option value="@medico.MedicoId">@medico.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label for="PacienteId" class="form-label">Nombre del Paciente</label>
+                        <select asp-for="PacienteId" id="medicamento" class="form-control">
+                            <option selected>Seleccionar...</option>
+                            @foreach (var paciente in ViewBag.Paciente)
+                            {
+                                <option value="@paciente.PacienteId">@paciente.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                    
+
             <div class="form-group">
                             <label for="FechaVisita" class="form-label">Fecha de Visita</label>
                 <input asp-for="FechaVisita" class="form-control" />
@@ -39,19 +55,36 @@
                 <input asp-for="Sintomas" class="form-control" />
                 <span asp-validation-for="Sintomas" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                            <label for="MedicamentoId" class="form-label">Medicamento Indicado</label>
-                <select asp-for="MedicamentoId" class ="form-control" asp-items="ViewBag.MedicamentoId"></select>
-            </div>
+                    <div class="form-group">
+                        <label for="MedicamentoId" class="form-label">Medicamento Indicado</label>
+                        <select asp-for="MedicamentoId" id="medicamento" class="form-control">
+                            <option selected>Seleccionar...</option>
+                            @foreach (var medicamentos in ViewBag.Medicamento)
+                            {
+                                <option value="@medicamentos.MedicamentoId">@medicamentos.Descripcion</option>
+                            }
+                        </select>
+                    </div>
+        
             <div class="form-group">
                 <label asp-for="Recomendaciones" class="form-label"></label>
                 <input asp-for="Recomendaciones" class="form-control" />
                 <span asp-validation-for="Recomendaciones" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                            <label for="EstadoId" class="form-label">Estado</label>
-                <select asp-for="EstadoId" class ="form-control" asp-items="ViewBag.EstadoId"></select>
-            </div>
+
+                   
+                    <div class="form-group">
+                        <label for="EstadoId" class="form-label">Estado</label>
+                        <select asp-for="EstadoId" id="estado" class="form-select">
+                            <option selected>Seleccionar...</option>
+                            @foreach (var estados in ViewBag.Estado)
+                            {
+                                <option value="@estados.EstadoId">@estados.Descripcion</option>
+                            }
+
+                        </select>
+                        <span asp-validation-for="EstadoId" class="text-danger"></span>
+                    </div>
                         <br />
                         <div class="text-center">
                             <input type="submit" value="Crear" class="btn btn-success" />

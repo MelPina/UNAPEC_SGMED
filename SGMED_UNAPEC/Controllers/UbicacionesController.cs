@@ -133,16 +133,16 @@ namespace SGMED_UNAPEC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UbicacionId,Descripcion,Estante,Tramo,Celda,EstadoId")] Ubicacion ubicacion)
         {
-            if (ModelState.IsValid)
+            
             {
                 _context.Add(ubicacion);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", ubicacion.EstadoId);
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
-            return View(ubicacion);
+            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", ubicacion.EstadoId);
+            //var estado = _context.Estados.ToList();
+            //ViewBag.Estado = estado;
+            //return View(ubicacion);
         }
 
         // GET: Ubicaciones/Edit/5
@@ -176,7 +176,7 @@ namespace SGMED_UNAPEC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            
             {
                 try
                 {
@@ -196,10 +196,10 @@ namespace SGMED_UNAPEC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
-            ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", ubicacion.EstadoId);
-            return View(ubicacion);
+            //var estado = _context.Estados.ToList();
+            //ViewBag.Estado = estado;
+            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", ubicacion.EstadoId);
+            //return View(ubicacion);
         }
 
         // GET: Ubicaciones/Delete/5

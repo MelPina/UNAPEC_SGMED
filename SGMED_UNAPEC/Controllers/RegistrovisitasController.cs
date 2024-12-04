@@ -131,9 +131,16 @@ namespace SGMED_UNAPEC.Controllers
         {
             //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId");
             var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
-            ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos, "MedicamentoId", "MedicamentoId");
-            ViewData["MedicoId"] = new SelectList(_context.Medicos, "MedicoId", "MedicoId");
+            ViewBag.Estado = estado; 
+            var medicamento = _context.Medicamentos.ToList();
+            ViewBag.Medicamento = medicamento;
+            var medico = _context.Medicos.ToList();
+            ViewBag.Medico = medico;
+            var paciente = _context.Pacientes.ToList();
+            ViewBag.Paciente = paciente;
+
+            //ViewData["Medicamento"] = new SelectList(_context.Medicamentos, "Medicamento", "Descripcion");
+            //ViewData["MedicoId"] = new SelectList(_context.Medicos, "MedicoId", "MedicoId");
             ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId");
             return View();
         }
@@ -145,19 +152,23 @@ namespace SGMED_UNAPEC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("VisitaId,MedicoId,PacienteId,FechaVisita,HoraVisita,Sintomas,MedicamentoId,Recomendaciones,EstadoId")] Registrovisitum registrovisitum)
         {
-            if (ModelState.IsValid)
-            {
+         
+           
                 _context.Add(registrovisitum);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", registrovisitum.EstadoId);
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
-            ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos, "MedicamentoId", "MedicamentoId", registrovisitum.MedicamentoId);
-            ViewData["MedicoId"] = new SelectList(_context.Medicos, "MedicoId", "MedicoId", registrovisitum.MedicoId);
-            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId", registrovisitum.PacienteId);
-            return View(registrovisitum);
+           
+            ////ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", registrovisitum.EstadoId);
+            //var estado = _context.Estados.ToList();
+            //ViewBag.Estado = estado;
+            //var medicamento = _context.Medicamentos.ToList();
+            //ViewBag.Medicamento = medicamento;
+            //var medico = _context.Medicos.ToList();
+            //ViewBag.Medico = medico;
+            ////ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos, "MedicamentoId", "MedicamentoId", registrovisitum.MedicamentoId);
+            ////ViewData["MedicoId"] = new SelectList(_context.Medicos, "MedicoId", "MedicoId", registrovisitum.MedicoId);
+            ////ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId", registrovisitum.PacienteId);
+            //return View(registrovisitum);
         }
 
         // GET: Registrovisitas/Edit/5
@@ -176,9 +187,15 @@ namespace SGMED_UNAPEC.Controllers
             //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", registrovisitum.EstadoId);
             var estado = _context.Estados.ToList();
             ViewBag.Estado = estado;
-            ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos, "MedicamentoId", "MedicamentoId", registrovisitum.MedicamentoId);
-            ViewData["MedicoId"] = new SelectList(_context.Medicos, "MedicoId", "MedicoId", registrovisitum.MedicoId);
-            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId", registrovisitum.PacienteId);
+            var medicamento = _context.Medicamentos.ToList();
+            ViewBag.Medicamento = medicamento;
+            var medico = _context.Medicos.ToList();
+            ViewBag.Medico= medico;
+            var paciente = _context.Pacientes.ToList();
+            ViewBag.Paciente = paciente;
+            //ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos, "MedicamentoId", "MedicamentoId", registrovisitum.MedicamentoId);
+            //ViewData["MedicoId"] = new SelectList(_context.Medicos, "MedicoId", "MedicoId", registrovisitum.MedicoId);
+            //ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId", registrovisitum.PacienteId);
             return View(registrovisitum);
         }
 
@@ -194,9 +211,17 @@ namespace SGMED_UNAPEC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
+            var estado = _context.Estados.ToList();
+            ViewBag.Estado = estado;
+            var medicamento = _context.Medicamentos.ToList();
+            ViewBag.Medicamento = medicamento;
+            var medico = _context.Medicos.ToList();
+            ViewBag.Medico = medico;
+            var paciente = _context.Pacientes.ToList();
+            ViewBag.Paciente = paciente;
+
+
+            try
                 {
                     _context.Update(registrovisitum);
                     await _context.SaveChangesAsync();
@@ -213,14 +238,12 @@ namespace SGMED_UNAPEC.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", registrovisitum.EstadoId);
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
-            ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos, "MedicamentoId", "MedicamentoId", registrovisitum.MedicamentoId);
-            ViewData["MedicoId"] = new SelectList(_context.Medicos, "MedicoId", "MedicoId", registrovisitum.MedicoId);
-            ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "PacienteId", registrovisitum.PacienteId);
-            return View(registrovisitum);
+         
+            ////ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", registrovisitum.EstadoId);
+            ////ViewData["MedicamentoId"] = new SelectList(_context.Medicamentos, "MedicamentoId", "MedicamentoId", registrovisitum.MedicamentoId);
+            ////ViewData["MedicoId"] = new SelectList(_context.Medicos, "MedicoId", "MedicoId", registrovisitum.MedicoId);
+            ////ViewData["PacienteId"] = new SelectList(_context.Pacientes, "PacienteId", "Nombre", registrovisitum.PacienteId);
+            //return View(registrovisitum);
         }
 
         // GET: Registrovisitas/Delete/5

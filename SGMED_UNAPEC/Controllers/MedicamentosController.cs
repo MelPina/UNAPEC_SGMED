@@ -153,29 +153,28 @@ namespace SGMED_UNAPEC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MedicamentoId,Descripcion,TipoFarmacoId,MarcaId,UbicacionId,Dosis,EstadoId")] Medicamento medicamento)
         {
-            if (ModelState.IsValid)
             {
                 _context.Add(medicamento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", medicamento.EstadoId);
-            ViewData["MarcaId"] = new SelectList(_context.Marcas, "MarcaId", "MarcaId", medicamento.MarcaId);
-            ViewData["TipoFarmacoId"] = new SelectList(_context.Tipofarmacos, "TipoFarmacoId", "TipoFarmacoId", medicamento.TipoFarmacoId);
-            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "UbicacionId", "UbicacionId", medicamento.UbicacionId);
+            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", medicamento.EstadoId);
+            //ViewData["MarcaId"] = new SelectList(_context.Marcas, "MarcaId", "MarcaId", medicamento.MarcaId);
+            //ViewData["TipoFarmacoId"] = new SelectList(_context.Tipofarmacos, "TipoFarmacoId", "TipoFarmacoId", medicamento.TipoFarmacoId);
+            //ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "UbicacionId", "UbicacionId", medicamento.UbicacionId);
 
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
+            //var estado = _context.Estados.ToList();
+            //ViewBag.Estado = estado;
 
-            var marca = _context.Marcas.ToList();
-            ViewBag.Marca = marca;
+            //var marca = _context.Marcas.ToList();
+            //ViewBag.Marca = marca;
 
-            var tpfarmaco = _context.Tipofarmacos.ToList();
-            ViewBag.Tpfarmaco = tpfarmaco;
+            //var tpfarmaco = _context.Tipofarmacos.ToList();
+            //ViewBag.Tpfarmaco = tpfarmaco;
 
-            var ubicacion = _context.Ubicacions.ToList();
-            ViewBag.Ubicacion = ubicacion;
-            return View(medicamento);
+            //var ubicacion = _context.Ubicacions.ToList();
+            //ViewBag.Ubicacion = ubicacion;
+            //return View(medicamento);
         }
 
         // GET: Medicamentos/Edit/5
@@ -223,7 +222,6 @@ namespace SGMED_UNAPEC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
             {
                 try
                 {
@@ -243,24 +241,24 @@ namespace SGMED_UNAPEC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", medicamento.EstadoId);
-            ViewData["MarcaId"] = new SelectList(_context.Marcas, "MarcaId", "MarcaId", medicamento.MarcaId);
-            ViewData["TipoFarmacoId"] = new SelectList(_context.Tipofarmacos, "TipoFarmacoId", "TipoFarmacoId", medicamento.TipoFarmacoId);
-            ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "UbicacionId", "UbicacionId", medicamento.UbicacionId);
+            //ViewData["EstadoId"] = new SelectList(_context.Estados, "EstadoId", "EstadoId", medicamento.EstadoId);
+            //ViewData["MarcaId"] = new SelectList(_context.Marcas, "MarcaId", "MarcaId", medicamento.MarcaId);
+            //ViewData["TipoFarmacoId"] = new SelectList(_context.Tipofarmacos, "TipoFarmacoId", "TipoFarmacoId", medicamento.TipoFarmacoId);
+            //ViewData["UbicacionId"] = new SelectList(_context.Ubicacions, "UbicacionId", "UbicacionId", medicamento.UbicacionId);
 
-            var estado = _context.Estados.ToList();
-            ViewBag.Estado = estado;
+            //var estado = _context.Estados.ToList();
+            //ViewBag.Estado = estado;
 
-            var marca = _context.Marcas.ToList();
-            ViewBag.Marca = marca;
+            //var marca = _context.Marcas.ToList();
+            //ViewBag.Marca = marca;
 
-            var tpfarmaco = _context.Tipofarmacos.ToList();
-            ViewBag.Tpfarmaco = tpfarmaco;
+            //var tpfarmaco = _context.Tipofarmacos.ToList();
+            //ViewBag.Tpfarmaco = tpfarmaco;
 
-            var ubicacion = _context.Ubicacions.ToList();
-            ViewBag.Ubicacion = ubicacion;
+            //var ubicacion = _context.Ubicacions.ToList();
+            //ViewBag.Ubicacion = ubicacion;
 
-            return View(medicamento);
+            //return View(medicamento);
         }
 
         // GET: Medicamentos/Delete/5
