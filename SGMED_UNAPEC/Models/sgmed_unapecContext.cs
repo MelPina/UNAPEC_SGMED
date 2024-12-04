@@ -200,6 +200,10 @@ namespace SGMED_UNAPEC.Models
                 entity.Property(e => e.EstadoId).HasColumnName("EstadoID");
 
                 entity.Property(e => e.HoraVisita).HasColumnType("time");
+                entity.Property(e => e.FechaVisita)
+                      .HasConversion(
+                          v => v.ToDateTime(TimeOnly.MinValue), 
+                          v => DateOnly.FromDateTime(v));      
 
                 entity.Property(e => e.MedicamentoId).HasColumnName("MedicamentoID");
 

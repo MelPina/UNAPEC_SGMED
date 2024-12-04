@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SGMED_UNAPEC.Models.Registrovisitum>
+
+@{
+    ViewData["Title"] = "Consulta de Visitas";
+}
+
+<main id="main" class="main">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-center">Consulta de Visitas</h5>
+            <hr />
+
+            <!-- Formulario de Filtros -->
+            <form id="filtroVisitas">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="medicoId" class="form-label">Médico</label>
+                        <select id="medicoId" class="form-select">
+                            <option value="">Seleccione...</option>
+                            @foreach (var medico in ViewBag.Medicos)
+                            {
+                                <option value="@medico.MedicoId">@medico.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="pacienteId" class="form-label">Paciente</label>
+                        <select id="pacienteId" class="form-select">
+                            <option value="">Seleccione...</option>
+                            @foreach (var paciente in ViewBag.Pacientes)
+                            {
+                                <option value="@paciente.PacienteId">@paciente.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="fechaVisita" class="form-label">Fecha</label>
+                        <input type="date" id="fechaVisita" class="form-control" />
+                    </div>
+                </div>
+                <br />
+                <div class="text-center">
+                    <button type="button" id="btnBuscar" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+            <hr />
+
+            <!-- Tabla de Resultados -->
+            <table id="tablaVisitas" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Médico</th>
+                        <th>Paciente</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Síntomas</th>
+                        <th>Recomendaciones</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#btnBuscar').on('click', function () {
+                var medicoId = $('#medicoId').val();
+                var pacienteId = $('#pacienteId').val();
+                var fechaVisita = $('#fechaVisita').val();
+
+                $.ajax({
+                    url: '@Url.Action("BuscarVisitas", "RegistroVisita")',
+                    type: 'GET',
+                    data: {
+                        medicoId: medicoId,
+                        pacienteId: pacienteId,
+                        fechaVisita: fechaVisita
+                    },
+                    success: function (data) {
+                        var tabla = $('#tablaVisitas tbody');
+                        tabla.empty();
+
+                        data.forEach(function (visita) {
+                            tabla.append(`
+                                <tr>
+                                    <td>${visita.medico}</td>
+                                    <td>${visita.paciente}</td>
+                                    <td>${visita.fechaVisita}</td>
+                                    <td>${visita.horaVisita}</td>
+                                    <td>${visita.sintomas}</td>
+                                    <td>${visita.recomendaciones}</td>
+                                    <td>${visita.estado}</td>
+                                </tr>
+                            `);
+                        });
+                    },
+                    error: function () {
+                        alert('Error al buscar visitas');
+                    }
+                });
+            });
+        });
+    </script>
+}
