@@ -87,13 +87,16 @@
                         <li>
                             <a asp-area="" asp-controller="Registrovisitas" asp-action="Create"> Registrar Visita </a>
                         </li>
+                        <li>
+                            <a asp-area="" asp-controller="RegistroVisita" asp-action="Consultas">Consultar Visita</a>
+                        </li>
 
                     </ul>
                 </li>
 
                 <!-- End Gestión de Ubicaciones Nav -->
             }
-            @if (User.IsInRole("1"))
+            @if (User.IsInRole("1") || User.IsInRole("5"))
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#farmacos-nav" data-bs-toggle="collapse" href="#">
@@ -113,7 +116,7 @@
 
                 <!-- End Gestión de Tipos de Fármacos Nav -->
             }
-            @if (User.IsInRole("1"))
+            @if (User.IsInRole("1") || User.IsInRole("5"))
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#marcas-nav" data-bs-toggle="collapse" href="#">
@@ -130,7 +133,7 @@
 
                 <!-- End Gestión de Marcas Nav -->
             }
-            @if (User.IsInRole("1"))
+            @if (User.IsInRole("1") || User.IsInRole("5"))
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#ubicaciones-nav" data-bs-toggle="collapse" href="#">
@@ -146,7 +149,7 @@
                 </li>
 
                 <!-- End Gestión de Ubicaciones Nav -->
-            }               @if (User.IsInRole("1"))
+            }               @if (User.IsInRole("1") || User.IsInRole("4"))
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#pacientes-nav" data-bs-toggle="collapse" href="#">
@@ -184,7 +187,7 @@
 
                 <!-- End Gestión de Medicos Nav -->
             }
-            @if (User.IsInRole("1") || User.IsInRole("4"))
+            @if (User.IsInRole("1") || User.IsInRole("5"))
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#medicamentos-nav" data-bs-toggle="collapse" href="#">
@@ -192,11 +195,9 @@
                     </a>
                     <ul id="medicamentos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                         <li>
-<<<<<<< HEAD
+
                         <a asp-area="" asp-controller="Medicamentos" asp-action="Index"> Listado de Medicamentos   </a>
-=======
-                            <a asp-area="" asp-controller="Medicamentos" asp-action="Index"> Gestión de Medicamentos   </a>
->>>>>>> main
+
                         </li>
 
 
@@ -206,7 +207,7 @@
                 <!-- End Gestión de Ubicaciones Nav -->
             }
 
-            @if (User.IsInRole("1") || User.IsInRole("4"))
+@*             @if (User.IsInRole("1") || User.IsInRole("4"))
             {
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#registrovisitas-nav" data-bs-toggle="collapse" href="#">
@@ -221,13 +222,13 @@
                     </ul>
                 </li>
 
-                <!-- End Gestión de Ubicaciones Nav -->
-            }
+               
+            } *@
 
 
-            <li class="nav-heading">Configuraciones</li>
             @if (User.IsInRole("1"))
             {
+            <li class="nav-heading">Configuraciones</li>
                 <li class="nav-item">
                     <a class="nav-link collapsed" data-bs-target="#administracion-nav" data-bs-toggle="collapse" href="#">
                         <i class="bi bi-person"></i><span>Administración</span><i class="bi bi-chevron-down ms-auto"></i>
